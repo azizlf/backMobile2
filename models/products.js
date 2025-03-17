@@ -11,13 +11,12 @@ const  prodSchema  = new mongoose.Schema({
     caractes:[],
    statut:String,
     chat:[], /// kol produits aandou chat mte3ou ynijmou ykalmou akthir min wehed aala produit mte3ou,
-  
-    likes:[],
+    likes:Number,
     reviews:[],
     date:String,
- 
     ville:String,
     city:String, /// kol produit aandou review mte3ou list fergha khaleha kima chat w caractes
-    catigories:String
+    catigories:String,
+    price:String
   });
 module.exports=mongoose.model('prodSchema',prodSchema);
