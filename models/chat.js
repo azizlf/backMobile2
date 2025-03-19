@@ -9,6 +9,6 @@ const chatSchema = new mongoose.Schema({
     product: { type: Schema.Types.ObjectId, ref: 'prodSchema' },
     msgs: [],
     view:Boolean
-
+    
 });
 module.exports = mongoose.model('chatSchema', chatSchema);

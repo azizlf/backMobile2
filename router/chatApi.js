@@ -81,7 +81,7 @@ router.get('/product/:productId', async (req, res) => {
 
         res.send(chat);
     } catch (err) {
-        res.status(500).send(err);
+        res.send(err);
     }
 })
 
@@ -100,7 +100,31 @@ router.get('/user/:userId', async (req, res) => {
         res.send(chats);
     } catch (err) {
         console.log(err)
-        // res.status(200).send(err);
+        res.send(err);
+    }
+})
+
+router.get('/prodUser/:productId/:userId', async (req, res) => {
+    try {
+        const { productId, userId } = req.params;
+
+        const chat = await chatSchema.find({
+            product: productId,
+            $or: [
+                { userSend: userId },
+                { userReceiv: userId }
+            ]
+        })
+        .populate('product')
+        .populate('userSend')
+        .populate('userReceiv');
+
+        console.log(req.params)
+        console.log(chat)
+
+        res.send(chat);
+    } catch (err) {
+        res.send(err);
     }
 })
 
