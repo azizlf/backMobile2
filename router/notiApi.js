@@ -45,8 +45,6 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         var noti = await notiSchema.findById(req.params.id)
-        await userSchema.findByIdAndUpdate({ _id: noti.userPosterId }, { $pull: { notis: noti._id } })
-
         const notiDelete = await notiSchema.deleteOne({ _id: req.params.id }).then(async (group) => {
             var notis = await notiSchema.find();
             res.send(notis)
